@@ -26,4 +26,43 @@ TEXTS = [
     garpike and stingray are also present.'''
 ]
 
-#zaciname
+#prihlaseni uzivatele
+uzivatele = {
+    "bob": "123",
+    "ann": "pass123",
+    "mike": "password123",
+    "liz": "pass123"
+}
+
+vstup_uzivatel = input("Napis uzivatelske jmeno: ")     
+vstup_heslo = input("Napis heslo: ")
+
+if vstup_uzivatel in uzivatele and uzivatele[vstup_uzivatel] == vstup_heslo:        
+    print("Ahoj", vstup_uzivatel, "prihlaseni probehlo uspesne")     
+else:
+    print("Nespravne uzivatelske jmeno nebo heslo")     
+    quit()
+
+#Prace s texty
+vstup_cislo_textu = (input("Zadej cislo vybraneho textu(1,2,3):" ))
+
+#Zajisti bezchybny prubeh
+if not vstup_cislo_textu.isdigit():
+    print("Neplatne cislo textu, ukoncuji program.") 
+    quit() 
+
+vstup_cislo_textu_int = int(vstup_cislo_textu)
+
+if 1 <= vstup_cislo_textu_int <= len(TEXTS):
+    vybrany_text = TEXTS[vstup_cislo_textu_int - 1]
+    print("Vybrany text: ", vybrany_text)
+else:
+    print("Neplatny vstup, ukoncuji program.")
+    quit()
+
+#Vystup analyzy textu
+slova = vybrany_text.split()
+pocet_slov = len(slova)
+print("There are", pocet_slov, "words in the selected text")
+
+slova_cap = slova.c
