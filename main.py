@@ -34,35 +34,88 @@ uzivatele = {
     "liz": "pass123"
 }
 
-vstup_uzivatel = input("Napis uzivatelske jmeno: ")     
-vstup_heslo = input("Napis heslo: ")
+vstup_uzivatel = input("Enter your username: ")     
+vstup_heslo = input("Enter your password: ")
 
 if vstup_uzivatel in uzivatele and uzivatele[vstup_uzivatel] == vstup_heslo:        
-    print("Ahoj", vstup_uzivatel, "prihlaseni probehlo uspesne")     
+    print("-"*40)
+    print("Welcome to the app,", vstup_uzivatel)  
+    print("We have 3 texts to be analyzed.")
+    print("-"*40)
 else:
-    print("Nespravne uzivatelske jmeno nebo heslo")     
+    print("Unregistered user, terminating the program.")     
     quit()
 
 #Prace s texty
-vstup_cislo_textu = (input("Zadej cislo vybraneho textu(1,2,3):" ))
+vstup_cislo_textu = (input("Enter a number btw. 1 and 3 to select: "))
 
 #Zajisti bezchybny prubeh
 if not vstup_cislo_textu.isdigit():
-    print("Neplatne cislo textu, ukoncuji program.") 
+    print("Invalid text number, terminating the program.") 
     quit() 
 
 vstup_cislo_textu_int = int(vstup_cislo_textu)
 
 if 1 <= vstup_cislo_textu_int <= len(TEXTS):
     vybrany_text = TEXTS[vstup_cislo_textu_int - 1]
-    print("Vybrany text: ", vybrany_text)
+    #print("Selected text: ", vybrany_text)
 else:
-    print("Neplatny vstup, ukoncuji program.")
+    print("Invalid input, terminating the program.")
     quit()
 
 #Vystup analyzy textu
 slova = vybrany_text.split()
 pocet_slov = len(slova)
-print("There are", pocet_slov, "words in the selected text")
+print("-"*40)
+print("There are", pocet_slov, "words in the selected text.")
 
-slova_cap = slova.c
+pocet_velkych_pismen = 0
+for slovo in slova:
+    if slovo[0].isupper():
+        pocet_velkych_pismen +=1
+print("There are", pocet_velkych_pismen, "titlecase words.")
+
+pocet_velkych_slov = 0
+for slovo in slova:
+    if slovo.isupper():
+        pocet_velkych_slov +=1 
+print("There are", pocet_velkych_pismen, "uppercase words.")
+
+pocet_malych_slov = 0
+for slovo in slova:
+    if slovo.islower():
+        pocet_malych_slov +=1 
+print("There are", pocet_malych_slov, "lowercase words.")
+
+pocet_cisel = 0
+for slovo in slova:
+    if slovo.isdigit():
+        pocet_cisel +=1 
+print("There are", pocet_cisel, "numeric strings.")
+
+soucet_cisel = 0
+for slovo in slova:
+    if slovo.isdigit():
+        soucet_cisel += int(slovo) 
+print("The sum of all the numbers is", soucet_cisel)
+print("-"*40)
+print("LEN| ", "OCCUENCES   |", "NR.")
+print("-"*40)
+
+slova = vybrany_text.split()
+ciste_slova = []
+for slovo in slova:
+    ciste_slova.append(slovo.strip(".,':;!?"))
+
+graf = {}
+delka_cisteho_slova = 1
+
+for ciste_slovo in ciste_slova:
+    delka_cisteho_slova = len(ciste_slovo)
+    if delka_cisteho_slova in graf:
+        graf[delka_cisteho_slova] = graf[delka_cisteho_slova] + 1
+    else:
+        graf[delka_cisteho_slova] = 1
+
+for delka_cisteho_slova in sorted(graf):
+    print(delka_cisteho_slova, "|", "*" * graf[delka_cisteho_slova])
