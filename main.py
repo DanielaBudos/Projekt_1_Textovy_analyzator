@@ -79,7 +79,7 @@ pocet_velkych_slov = 0
 for slovo in slova:
     if slovo.isupper():
         pocet_velkych_slov +=1 
-print("There are", pocet_velkych_pismen, "uppercase words.")
+print("There are", pocet_velkych_slov, "uppercase words.")
 
 pocet_malych_slov = 0
 for slovo in slova:
@@ -102,13 +102,11 @@ print("-"*40)
 print("LEN| ", "OCCUENCES   |", "NR.")
 print("-"*40)
 
-slova = vybrany_text.split()
 ciste_slova = []
 for slovo in slova:
     ciste_slova.append(slovo.strip(".,':;!?"))
 
 graf = {}
-delka_cisteho_slova = 1
 
 for ciste_slovo in ciste_slova:
     delka_cisteho_slova = len(ciste_slovo)
